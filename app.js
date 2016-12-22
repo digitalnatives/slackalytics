@@ -68,15 +68,11 @@ app.post('/collect', function(req, res){
 		cid: 	user.id,
 		ds:  	"slack", //data source
 		cs: 	"slack", // campaign source
-		cd1: 	user.id,
-		cd2: 	channel.name,
+		dimension1: 	user.id,
+		dimension2: 	channel.name,
 		cd3: 	msgText,
-		cm1: 	wordCount,
-		cm2: 	emojiCount,
-		cm3: 	exclaCount,
-	//	cm4: 	letterCount,
-		cm5: 	elipseCount, 
-		cm6: 	questionMark, //need to set up in GA
+		metric1: 	wordCount,
+		metric2: 	emojiCount,
 		dh:		teamDomain+".slack.com",
 		dp:		"/"+channel.name,
 		dt:		"Slack Channel: "+channel.name,
@@ -84,12 +80,12 @@ app.post('/collect', function(req, res){
 		ec: 	"slack: "+ channel.name + "|" + channel.id,
 		ea: 	"post by " + user.id,
 		el: 	msgText,
-		ev: 	1 
+		ev: 	1
 	};
 	console.log(JSON.stringify(data));
 	console.log(req.body);
-	//Make Post Request	
-	request.post("https://www.google-analytics.com/collect?" + qs.stringify(data), 
+	//Make Post Request
+	request.post("https://www.google-analytics.com/collect?" + qs.stringify(data),
 		function(error, resp, body){
 		console.log(error);
 	})
@@ -98,5 +94,5 @@ app.post('/collect', function(req, res){
 
 //Start Server
 app.listen(port, function () {
-	console.log('Listening on port ' + port); 
+	console.log('Listening on port ' + port);
 });
